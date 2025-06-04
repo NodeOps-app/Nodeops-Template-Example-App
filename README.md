@@ -122,7 +122,7 @@ The application will be available at `http://localhost:3000`
 
 This example application demonstrates:
 
-**NodeOps Containerization**: Learn how to containerize a Node.js application for NodeOps Network
+**NodeOps Containerization**: Learn how to containerize a Node.js application for NodeOps Network and use the Agent Terminal
 
 ## 🤝 Contributing
 
@@ -134,11 +134,10 @@ This project is part of the NodeOps examples and is available under the MIT Lice
 
 ## 🔗 Useful Links
 
-- [NodeOps Documentation](https://docs.nodeops.com)
+- [NodeOps Documentation](https://docs.nodeops.network/)
 - [Express.js Documentation](https://expressjs.com)
 - [Docker Documentation](https://docs.docker.com)
 
 ---
 
 Built with ❤️ by the NodeOps Team # Nodeops-Template-Example-App
-# Nodeops-Template-Example-App
