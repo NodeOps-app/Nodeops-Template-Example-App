@@ -73,7 +73,7 @@ Your application will be ready to use once the setup script completes.
 
 #### Using Docker Compose (Recommended)
 
-1. Start the application:
+1. Make sure Docker is installed and running on your machine. Start the application:
    ```bash
    docker-compose up -d
    ```
