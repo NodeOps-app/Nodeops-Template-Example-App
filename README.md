@@ -36,7 +36,7 @@ Welcome to the NodeOps Example Task Manager! This is a starter application desig
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/NodeOps-app/Nodeops-Template-Example-App.git
    cd nodeops-example-todo-app
    ```
 
@@ -51,6 +51,23 @@ Welcome to the NodeOps Example Task Manager! This is a starter application desig
    ```
 
 4. Open your browser and navigate to `http://localhost:3000`
+
+### Deploying to NodeOps Agent Terminal
+
+1. Go to the NodeOps Agent Terminal
+2. Deploy a new instance
+3. Once the instance is up (you'll see an IDE-like interface):
+   - Open the terminal in the instance
+   - Copy the contents of the `setup.sh` script from this repository
+   - Paste and run the script in the terminal
+4. The script will automatically:
+   - Initialize the project
+   - Set up all dependencies
+   - Configure the environment
+   - Start the application
+
+Your application will be ready to use once the setup script completes.
+
 
 ### Docker Deployment
 
@@ -82,22 +99,6 @@ Welcome to the NodeOps Example Task Manager! This is a starter application desig
    ```
 
 The application will be available at `http://localhost:3000`
-
-### Deploying to NodeOps Server
-
-1. Go to the NodeOps Agent Terminal
-2. Deploy a new instance
-3. Once the instance is up (you'll see an IDE-like interface):
-   - Open the terminal in the instance
-   - Copy the contents of the `setup.sh` script from this repository
-   - Paste and run the script in the terminal
-4. The script will automatically:
-   - Initialize the project
-   - Set up all dependencies
-   - Configure the environment
-   - Start the application
-
-Your application will be ready to use once the setup script completes.
 
 #### Using Docker Directly
 
