@@ -1,0 +1,18 @@
+# todo.yaml
+# NodeoOps official YAML format
+version: 0.1
+services:
+  app:
+    image: >-
+      julianapeace/nodeops_hello_world_template:0.0.1 
+    imagePullPolicy: Always
+    command: []
+    args: []
+    ports:
+      - containerPort: 3000
+        protocol: TCP
+        expose: true
+    resourceUsage:
+      idle:
+        cpu: 200
+        memory: 400
