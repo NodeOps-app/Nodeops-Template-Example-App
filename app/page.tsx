@@ -110,7 +110,7 @@ export default function TaskManager() {
             <div className="text-center mb-4">
               <h2 className="text-xl font-bold text-purple-800 mb-2">🚀 NodeOps Hackathon Demo</h2>
               <p className="text-purple-700 text-sm">
-                This demo showcases how to deploy a template on NodeOps Cloud Marketplace and start earning revenue share!
+                This demo showcases how to deploy a template on NodeOps Cloud Marketplace and start earning revenue share! 
               </p>
             </div>
             
@@ -169,11 +169,11 @@ export default function TaskManager() {
               </Card>
             </div>
 
-            <div className="mt-4 text-center">
+            {/* <div className="mt-4 text-center">
               <p className="text-xs text-purple-600">
                 Learn how to dockerize your app and submit it to the NodeOps community marketplace to start earning revenue share.
               </p>
-            </div>
+            </div> */}
           </CardContent>
         </Card>
 
