@@ -8,6 +8,8 @@ Welcome to the NodeOps Example Task Manager! This is a starter application desig
 - Express.js backend
 - Simple task management
 - Docker support
+- Web3 wallet integration (coming soon)
+- Environment variable management
 
 ## 📁 Project Structure
 
