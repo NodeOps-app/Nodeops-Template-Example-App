@@ -3,6 +3,10 @@ FROM node:20-slim
 
 WORKDIR /app
 
+# Set build-time arguments for environment variables
+ARG NEXT_PUBLIC_TEST="Default value from Docker"
+ENV NEXT_PUBLIC_TEST=${NEXT_PUBLIC_TEST}
+
 # Copy package files first
 COPY package.json pnpm-lock.yaml* ./
 

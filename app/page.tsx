@@ -16,40 +16,13 @@ interface Task {
   owner?: string
 }
 
-interface RuntimeEnvVars {
-  NEXT_PUBLIC_TEST: string
-  NODE_ENV: string
-  PORT: string
-}
-
 export default function TaskManager() {
   const [tasks, setTasks] = useState<Task[]>([])
   const [newTask, setNewTask] = useState("")
   const [connectedAddress, setConnectedAddress] = useState<string>("")
-  const [runtimeEnvVars, setRuntimeEnvVars] = useState<RuntimeEnvVars | null>(null)
-  const [loading, setLoading] = useState(true)
 
-  // Fetch runtime environment variables
-  useEffect(() => {
-    const fetchEnvVars = async () => {
-      try {
-        const response = await fetch('/api/env')
-        const data = await response.json()
-        setRuntimeEnvVars(data)
-      } catch (error) {
-        console.error('Failed to fetch environment variables:', error)
-        setRuntimeEnvVars({
-          NEXT_PUBLIC_TEST: "Failed to load",
-          NODE_ENV: "unknown",
-          PORT: "unknown"
-        })
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchEnvVars()
-  }, [])
+  // Get environment variable directly (build-time)
+  const nextPublicTest = process.env.NEXT_PUBLIC_TEST || "Not set"
 
   // Load tasks from localStorage on component mount
   useEffect(() => {
@@ -114,13 +87,20 @@ export default function TaskManager() {
     <div className="min-h-screen bg-black p-4">
       {/* Logo */}
       <div className="fixed top-5 left-5 z-10">
-        <Image 
-          src="/logo.png" 
-          alt="NodeOps Logo" 
-          width={240} 
-          height={60} 
-          className="w-60 h-15 object-contain"
-        />
+        <a 
+          href="https://nodeops.network/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="block hover:opacity-80 transition-opacity"
+        >
+          <Image 
+            src="/logo.png" 
+            alt="NodeOps Logo" 
+            width={240} 
+            height={60} 
+            className="w-60 h-15 object-contain"
+          />
+        </a>
       </div>
 
       <div className="max-w-2xl mx-auto pt-20">
@@ -192,6 +172,17 @@ export default function TaskManager() {
             <div className="mt-4 text-center">
               <p className="text-xs text-purple-600">
                 Learn how to dockerize your app and submit it to the NodeOps community marketplace to start earning revenue share.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Environment Variable Display */}
+        <Card className="bg-gray-50 border-gray-200 mb-6">
+          <CardContent className="pt-6">
+            <div className="text-center">
+              <p className="text-sm font-mono text-gray-700">
+                NEXT_PUBLIC_TEST= <span className="text-purple-600">{nextPublicTest}</span>
               </p>
             </div>
           </CardContent>

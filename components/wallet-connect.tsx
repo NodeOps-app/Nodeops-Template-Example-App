@@ -34,9 +34,7 @@ export function WalletConnect({ onConnect, onDisconnect, connectedAddress }: Wal
           onConnect(accounts[0])
         }
       } else {
-        // Simulate wallet connection for demo purposes
-        const mockAddress = "0x" + Math.random().toString(16).substr(2, 40)
-        onConnect(mockAddress)
+        alert("No Ethereum wallet detected. Please install MetaMask or another Ethereum wallet.")
       }
     } catch (error) {
       console.error("Failed to connect wallet:", error)
