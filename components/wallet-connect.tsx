@@ -4,6 +4,15 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ChevronDown, Wallet, Copy, ExternalLink, LogOut } from "lucide-react"
 
+// TypeScript declarations for Ethereum provider
+declare global {
+  interface Window {
+    ethereum?: {
+      request: (args: { method: string; params?: any[] }) => Promise<any>
+    }
+  }
+}
+
 interface WalletConnectProps {
   onConnect: (address: string) => void
   onDisconnect: () => void
@@ -14,7 +23,7 @@ export function WalletConnect({ onConnect, onDisconnect, connectedAddress }: Wal
   const [isOpen, setIsOpen] = useState(false)
   const [isConnecting, setIsConnecting] = useState(false)
 
-  const connectWallet = async (walletType: string) => {
+  const connectWallet = async () => {
     setIsConnecting(true)
     try {
       if (typeof window !== "undefined" && window.ethereum) {
@@ -90,18 +99,13 @@ export function WalletConnect({ onConnect, onDisconnect, connectedAddress }: Wal
 
       {isOpen && (
         <div className="wallet-dropdown">
-          <button className="wallet-option" onClick={() => connectWallet("metamask")} disabled={isConnecting}>
+          <button className="wallet-option" onClick={connectWallet} disabled={isConnecting}>
             <div className="wallet-icon bg-orange-500 flex items-center justify-center">🦊</div>
-            MetaMask
+            Connect Ethereum Wallet
           </button>
-          <button className="wallet-option" onClick={() => connectWallet("walletconnect")} disabled={isConnecting}>
-            <div className="wallet-icon bg-blue-500 flex items-center justify-center">🔗</div>
-            WalletConnect
-          </button>
-          <button className="wallet-option" onClick={() => connectWallet("coinbase")} disabled={isConnecting}>
-            <div className="wallet-icon bg-blue-600 flex items-center justify-center">💰</div>
-            Coinbase Wallet
-          </button>
+          <div className="px-4 py-2 text-xs text-gray-500 border-t">
+            <p>Note: This demo connects to any Ethereum wallet injected in your browser</p>
+          </div>
         </div>
       )}
     </div>

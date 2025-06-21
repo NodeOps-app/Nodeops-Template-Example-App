@@ -16,13 +16,40 @@ interface Task {
   owner?: string
 }
 
+interface RuntimeEnvVars {
+  NEXT_PUBLIC_TEST: string
+  NODE_ENV: string
+  PORT: string
+}
+
 export default function TaskManager() {
   const [tasks, setTasks] = useState<Task[]>([])
   const [newTask, setNewTask] = useState("")
   const [connectedAddress, setConnectedAddress] = useState<string>("")
+  const [runtimeEnvVars, setRuntimeEnvVars] = useState<RuntimeEnvVars | null>(null)
+  const [loading, setLoading] = useState(true)
 
-  // Environment variable demo
-  const testEnvVar = process.env.NEXT_PUBLIC_TEST || "No environment variable set"
+  // Fetch runtime environment variables
+  useEffect(() => {
+    const fetchEnvVars = async () => {
+      try {
+        const response = await fetch('/api/env')
+        const data = await response.json()
+        setRuntimeEnvVars(data)
+      } catch (error) {
+        console.error('Failed to fetch environment variables:', error)
+        setRuntimeEnvVars({
+          NEXT_PUBLIC_TEST: "Failed to load",
+          NODE_ENV: "unknown",
+          PORT: "unknown"
+        })
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchEnvVars()
+  }, [])
 
   // Load tasks from localStorage on component mount
   useEffect(() => {
@@ -90,27 +117,20 @@ export default function TaskManager() {
         <Image 
           src="/logo.png" 
           alt="NodeOps Logo" 
-          width={192} 
-          height={48} 
-          className="w-48 h-12 object-contain"
+          width={240} 
+          height={60} 
+          className="w-60 h-15 object-contain"
         />
       </div>
 
       <div className="max-w-2xl mx-auto pt-20">
-        {/* Environment Variable Demo */}
-        <div className="text-center mb-4">
-          <div className="inline-block bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-3 rounded-full shadow-lg">
-            <span className="text-lg font-bold">NEXT_PUBLIC_TEST: {testEnvVar}</span>
-          </div>
-        </div>
-
         {/* NodeOps Demo Info Section */}
         <Card className="bg-gradient-to-r from-purple-50 to-blue-50 border-purple-200 mb-6">
           <CardContent className="pt-6">
             <div className="text-center mb-4">
               <h2 className="text-xl font-bold text-purple-800 mb-2">🚀 NodeOps Hackathon Demo</h2>
               <p className="text-purple-700 text-sm">
-                This demo showcases how to deploy a template on NodeOps Cloud Marketplace and start earning revenue share! 
+                This demo showcases how to deploy a template on NodeOps Cloud Marketplace and start earning revenue share!
               </p>
             </div>
             
@@ -169,11 +189,11 @@ export default function TaskManager() {
               </Card>
             </div>
 
-            {/* <div className="mt-4 text-center">
+            <div className="mt-4 text-center">
               <p className="text-xs text-purple-600">
                 Learn how to dockerize your app and submit it to the NodeOps community marketplace to start earning revenue share.
               </p>
-            </div> */}
+            </div>
           </CardContent>
         </Card>
 
