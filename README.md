@@ -1,145 +1,144 @@
-# NodeOps Example - Task Manager
+# NodeOps Web3 Task Manager
 
-Welcome to the NodeOps Example Task Manager! This is a starter application designed to help developers get familiar with NodeOps and its capabilities. This simple yet functional todo application demonstrates basic NodeOps features and best practices for containerized Node.js applications.
+A Web3-enabled task management application designed for the NodeOps hackathon demo. This project showcases how to deploy a template on the NodeOps Cloud Marketplace and start earning revenue share.
 
 ## 🚀 Features
 
-- Containerized Node.js application
-- Express.js backend
-- Simple task management
-- Docker support
-- Web3 wallet integration (coming soon)
-- Environment variable management
+- **Web3 Wallet Integration**: Connect with Ethereum wallets (MetaMask, etc.)
+- **Task Management**: Create, complete, and delete tasks associated with your wallet
+- **Local Storage**: Tasks are stored locally and linked to your wallet address
+- **Environment Variables**: Demonstrates runtime environment variable handling
+- **Docker Support**: Containerized for easy deployment
+- **Responsive Design**: Modern UI with Tailwind CSS
 
-## 📁 Project Structure
+## 🛠️ Tech Stack
 
-```
-.
-├── public/                 # Frontend assets
-│   ├── index.html         # Main HTML file
-│   ├── styles.css         # CSS styles
-│   ├── script.js          # Frontend JavaScript
-│   └── logo.png           # NodeOps logo
-├── server.js              # Express.js server
-├── package.json           # Project dependencies
-├── Dockerfile            # Docker configuration
-└── .dockerignore         # Docker ignore rules
-```
+- **Frontend**: Next.js 15, React 19, TypeScript
+- **Styling**: Tailwind CSS, Radix UI components
+- **Web3**: Ethereum wallet integration
+- **Icons**: Lucide React
+- **Containerization**: Docker
 
-## 🛠️ Prerequisites
+## 📦 Installation
 
-- Node.js (v10 or higher)
-- Docker (for containerized deployment)
-- npm or yarn package manager
-
-## 🚀 Getting Started
+### Prerequisites
+- Node.js 20+
+- pnpm (recommended) or npm
+- Docker (optional)
 
 ### Local Development
 
-1. Clone the repository:
+1. **Clone the repository**
    ```bash
    git clone https://github.com/NodeOps-app/Nodeops-Template-Example-App.git
-   cd nodeops-example-todo-app
+   cd Nodeops-Template-Example-App
    ```
 
-2. Install dependencies:
+2. **Install dependencies**
    ```bash
+   pnpm install
+   # or
    npm install
    ```
 
-3. Start the development server:
+3. **Set up environment variables**
    ```bash
-   npm start
+   # Create .env.local file
+   echo "NEXT_PUBLIC_TEST=Hello from local development!" > .env.local
    ```
 
-4. Open your browser and navigate to `http://localhost:3000`
+4. **Run the development server**
+   ```bash
+   pnpm dev
+   # or
+   npm run dev
+   ```
 
-### Deploying to NodeOps Agent Terminal
-
-1. Go to the NodeOps Agent Terminal
-2. Deploy a new instance
-3. Once the instance is up (you'll see an IDE-like interface):
-   - Open the terminal in the instance
-   - Copy the contents of the `setup.sh` script from this repository
-   - Paste and run the script in the terminal
-4. The script will automatically:
-   - Initialize the project
-   - Set up all dependencies
-   - Configure the environment
-   - Start the application
-
-Your application will be ready to use once the setup script completes.
-
+5. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
 ### Docker Deployment
 
-#### Using Docker Compose (Recommended)
-
-1. Make sure Docker is installed and running on your machine. Start the application:
+1. **Build the Docker image**
    ```bash
-   docker-compose up -d
+   # With default environment variable
+   docker build -t nodeops-task-manager .
+   
+   # With custom environment variable
+   docker build --build-arg NEXT_PUBLIC_TEST="Hello from Docker!" -t nodeops-task-manager .
    ```
 
-2. View the logs:
+2. **Run the container**
    ```bash
-   docker-compose logs -f
+   docker run -p 8000:3000 nodeops-task-manager
    ```
 
-3. Stop the application:
-   ```bash
-   docker-compose down
-   ```
+3. **Access the application**
+   Navigate to [http://localhost:8000](http://localhost:8000)
 
-4. Rebuild the container (if you make changes):
-   ```bash
-   docker-compose build
-   ```
+## 🔧 Environment Variables
 
-5. Check container status:
-   ```bash
-   docker-compose ps
-   ```
+- `NEXT_PUBLIC_TEST`: Displayed in the UI to demonstrate environment variable handling
+- `NODE_ENV`: Node.js environment (development/production)
+- `PORT`: Server port (defaults to 3000)
 
-The application will be available at `http://localhost:3000`
+## 🎯 NodeOps Integration
 
-#### Using Docker Directly
+This demo showcases:
 
-1. Build the Docker image:
-   ```bash
-   docker build -t nodeops-todo-app .
-   ```
+1. **Template Creation**: How to structure a deployable application
+2. **Docker Containerization**: Preparing apps for NodeOps Cloud Marketplace
+3. **Environment Configuration**: Managing runtime variables
+4. **Revenue Sharing**: Potential for earning through the marketplace
 
-2. Run the container:
-   ```bash
-   docker run -p 3000:3000 nodeops-todo-app
-   ```
+## 📚 Resources
 
-## 🔧 Technology Stack
+- [NodeOps Documentation](https://docs.nodeops.network/Guides/Marketplace/Configure-Compute/Create-Templates)
+- [NodeOps Twitter](https://x.com/BuildOnNodeOps)
+- [Source Code Repository](https://github.com/NodeOps-app/Nodeops-Template-Example-App)
 
-- **Frontend**: HTML5, CSS3, JavaScript
-- **Backend**: Node.js, Express.js
-- **Containerization**: Docker
+## 🏗️ Project Structure
 
-## 🎯 What to Expect
+```
+Nodeops-Template-Example-App/
+├── app/                    # Next.js app directory
+│   ├── globals.css        # Global styles
+│   ├── layout.tsx         # Root layout
+│   └── page.tsx           # Main page
+├── components/            # React components
+│   ├── ui/               # UI components (Radix UI)
+│   └── wallet-connect.tsx # Wallet connection component
+├── lib/                   # Utility functions
+├── public/                # Static assets
+├── Dockerfile            # Docker configuration
+└── package.json          # Dependencies and scripts
+```
 
-This example application demonstrates:
+## 🚀 Deployment to NodeOps
 
-**NodeOps Containerization**: Learn how to containerize a Node.js application for NodeOps Network and use the Agent Terminal
+1. **Prepare your template**:
+   - Ensure Dockerfile is optimized
+   - Set appropriate environment variables
+   - Test locally with Docker
+
+2. **Submit to NodeOps Marketplace**:
+   - Follow the [Create Templates Guide](https://docs.nodeops.network/Guides/Marketplace/Configure-Compute/Create-Templates)
+   - Upload your Docker image
+   - Configure pricing and revenue sharing
+
+3. **Start earning**:
+   - Users can deploy your template
+   - Earn revenue share from deployments
+   - Scale your template business
 
 ## 🤝 Contributing
 
-Feel free to fork this repository and submit pull requests. For major changes, please open an issue first to discuss what you would like to change.
+This is a demo project for the NodeOps hackathon. Feel free to fork and modify for your own NodeOps templates!
 
-## 📝 License
+## 📄 License
 
-This project is part of the NodeOps examples and is available under the MIT License.
-
-## 🔗 Useful Links
-
-- [NodeOps Documentation](https://docs.nodeops.network/)
-- [Express.js Documentation](https://expressjs.com)
-- [Docker Documentation](https://docs.docker.com)
+This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-Built with ❤️ by the NodeOps Team # Nodeops-Template-Example-App
+**Built for NodeOps Hackathon** 🚀

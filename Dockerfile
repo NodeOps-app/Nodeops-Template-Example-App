@@ -1,20 +1,25 @@
-# Use Node.js LTS version
+# Use Node.js 20 slim for smaller image size
 FROM node:20-slim
 
-# Create app directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
+# Set build-time arguments for environment variables
+ARG NEXT_PUBLIC_TEST="Default value from Docker"
+ENV NEXT_PUBLIC_TEST=${NEXT_PUBLIC_TEST}
+
+# Copy package files first
+COPY package.json pnpm-lock.yaml* ./
 
 # Install dependencies
-RUN npm install
+RUN npm install -g pnpm && pnpm install
 
-# Copy app source
+# Copy source code (excluding node_modules)
 COPY . .
 
-# Expose the port the app runs on
+# Build the application
+RUN pnpm run build
+
 EXPOSE 3000
 
-# Command to run the application
+# Use npm start instead of pnpm start for better compatibility
 CMD ["npm", "start"] 
