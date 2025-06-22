@@ -4,20 +4,20 @@ FROM node:20-slim
 WORKDIR /app
 
 # Set build-time arguments for environment variables
-ARG NEXT_PUBLIC_TEST="Default value from Docker"
+ARG NEXT_PUBLIC_TEST="hello_world"
 ENV NEXT_PUBLIC_TEST=${NEXT_PUBLIC_TEST}
 
 # Copy package files first
-COPY package.json pnpm-lock.yaml* ./
+COPY package.json ./
 
 # Install dependencies
-RUN npm install -g pnpm && pnpm install
+RUN npm install
 
 # Copy source code (excluding node_modules)
 COPY . .
 
 # Build the application
-RUN pnpm run build
+RUN npm run build
 
 EXPOSE 3000
 

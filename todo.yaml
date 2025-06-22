@@ -1,0 +1,37 @@
+# Defines the version of the configuration format
+version: 0.1
+
+# Services are a collection of workloads that work together
+services:
+  # Defines a workload named 'jupiter'
+  app:
+    # Specify the container image name; Make sure image is public
+    image: julianapeace/todo_app:0.1
+
+    # Determines when to fetch the latest version of the workload
+    imagePullPolicy: Always
+
+    # Defines the command to run; empty by default
+    command: []
+
+    # Specifies arguments for the command; empty by default
+    args: []
+
+    # Defines network-related settings
+    ports:
+      - containerPort: 3000 # The port on which the service will be available
+        protocol: TCP # The protocol used for communication
+        expose: true # This will generate the URL for the service, so it can be accessed from the internet
+
+    # Defines environment variables for the workload
+    env:
+      - name: NEXT_PUBLIC_TEST # Environment variable name
+        value: "{{.ENV}}" # Placeholder for dynamic value substitution; It means whenever someone try to deploy this service, they need to provide a value for this variable.
+        default: hello_world # Default value for the environment variable
+
+    # Specifies the minimum resource allocation
+    # This also specify the template price
+    resourceUsage:
+      idle:
+        cpu: 200 # CPU allocation (likely in millicores, meaning 0.2 cores)
+        memory: 400 # Memory allocation (likely in MB)
