@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Trash2, Plus, ExternalLink, Twitter, Github } from "lucide-react"
+import { Trash2, Plus, ExternalLink } from "lucide-react"
 import { WalletConnect } from "@/components/wallet-connect"
 import Image from "next/image"
 
