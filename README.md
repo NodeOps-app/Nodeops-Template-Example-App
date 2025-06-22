@@ -36,8 +36,6 @@ A Web3-enabled task management application designed for the NodeOps hackathon de
 
 2. **Install dependencies**
    ```bash
-   pnpm install
-   # or
    npm install
    ```
 
@@ -49,7 +47,7 @@ A Web3-enabled task management application designed for the NodeOps hackathon de
 
 4. **Run the development server**
    ```bash
-   pnpm dev
+   npm start
    # or
    npm run dev
    ```
@@ -79,8 +77,6 @@ A Web3-enabled task management application designed for the NodeOps hackathon de
 ## 🔧 Environment Variables
 
 - `NEXT_PUBLIC_TEST`: Displayed in the UI to demonstrate environment variable handling
-- `NODE_ENV`: Node.js environment (development/production)
-- `PORT`: Server port (defaults to 3000)
 
 ## 🎯 NodeOps Integration
 
@@ -124,7 +120,6 @@ Nodeops-Template-Example-App/
 2. **Submit to NodeOps Marketplace**:
    - Follow the [Create Templates Guide](https://docs.nodeops.network/Guides/Marketplace/Configure-Compute/Create-Templates)
    - Upload your Docker image
-   - Configure pricing and revenue sharing
 
 3. **Start earning**:
    - Users can deploy your template
@@ -133,7 +128,7 @@ Nodeops-Template-Example-App/
 
 ## 🤝 Contributing
 
-This is a demo project for the NodeOps hackathon. Feel free to fork and modify for your own NodeOps templates!
+This is a demo project for the hackathon. Feel free to fork and modify for your own NodeOps templates!
 
 ## 📄 License
 
