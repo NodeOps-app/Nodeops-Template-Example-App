@@ -4,7 +4,6 @@ FROM node:20-slim
 WORKDIR /app
 
 # Set build-time arguments for environment variables
-ARG NEXT_PUBLIC_TEST="hello_world"
 ENV NEXT_PUBLIC_TEST=${NEXT_PUBLIC_TEST}
 
 # Copy package files first
