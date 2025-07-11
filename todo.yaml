@@ -23,10 +23,7 @@ services:
         protocol: TCP # The protocol used for communication
         expose: true # This will generate the URL for the service, so it can be accessed from the internet
 
-    # Defines environment variables for the workload
-    env:
-      - name: NEXT_PUBLIC_TEST # Environment variable name
-        value: "{{.NEXT_PUBLIC_TEST}}" # Placeholder for dynamic value substitution; It means whenever someone try to deploy this service, they need to provide a value for this variable.
+
 
     # Specifies the minimum resource allocation
     # This also specify the template price

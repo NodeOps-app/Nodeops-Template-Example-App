@@ -39,20 +39,14 @@ A Web3-enabled task management application designed for the NodeOps hackathon de
    npm install
    ```
 
-3. **Set up environment variables**
-   ```bash
-   # Create .env.local file
-   echo "NEXT_PUBLIC_TEST=Hello from local development!" > .env.local
-   ```
-
-4. **Run the development server**
+3. **Run the development server**
    ```bash
    npm start
    # or
    npm run dev
    ```
 
-5. **Open your browser**
+4. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
 ### Docker Deployment
@@ -63,7 +57,7 @@ A Web3-enabled task management application designed for the NodeOps hackathon de
    docker build -t nodeops-task-manager .
    
    # With custom environment variable
-   docker build --build-arg NEXT_PUBLIC_TEST="Hello from Docker!" -t nodeops-task-manager .
+   docker build -t nodeops-task-manager .
    ```
 
 2. **Run the container**
@@ -76,7 +70,7 @@ A Web3-enabled task management application designed for the NodeOps hackathon de
 
 ## 🔧 Environment Variables
 
-- `NEXT_PUBLIC_TEST`: Displayed in the UI to demonstrate environment variable handling
+
 
 ## 🎯 NodeOps Integration
 
