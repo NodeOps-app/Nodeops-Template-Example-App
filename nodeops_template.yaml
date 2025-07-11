@@ -6,7 +6,7 @@ services:
   # Defines a workload named 'jupiter'
   app:
     # Specify the container image name; Make sure image is public
-    image: julianapeace/todo_app:0.1
+    image: julianapeace/nodeops_hello_world_template:0.1
 
     # Determines when to fetch the latest version of the workload
     imagePullPolicy: Always
@@ -22,8 +22,6 @@ services:
       - containerPort: 3000 # The port on which the service will be available
         protocol: TCP # The protocol used for communication
         expose: true # This will generate the URL for the service, so it can be accessed from the internet
-
-
 
     # Specifies the minimum resource allocation
     # This also specify the template price
