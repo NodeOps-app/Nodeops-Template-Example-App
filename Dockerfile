@@ -1,5 +1,5 @@
 # Use Node.js 20 slim for smaller image size
-FROM node:20-slim AS base
+FROM node:24-slim AS base
 
 # Install dependencies only when needed
 FROM base AS deps
