@@ -122,12 +122,8 @@ Nodeops-Template-Example-App/
 
 ## 🤝 Contributing
 
-This is a demo project for the hackathon. Feel free to fork and modify for your own NodeOps templates!
+This is a demo project. Feel free to fork and modify for your own NodeOps templates!
 
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
-
----
-
-**Built for NodeOps Hackathon** 🚀

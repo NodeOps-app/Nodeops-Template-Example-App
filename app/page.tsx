@@ -105,7 +105,7 @@ export default function Page() {
         <Card className="bg-gradient-to-r from-purple-50 to-blue-50 border-purple-200 mb-6">
           <CardContent className="pt-6">
             <div className="text-center mb-4">
-              <h2 className="text-xl font-bold text-purple-800 mb-2">🚀 NodeOps Hackathon Demo</h2>
+              <h2 className="text-xl font-bold text-purple-800 mb-2">🚀 NodeOps Template Demo</h2>
               <p className="text-purple-700 text-sm">
                 This demo showcases how to deploy a template on NodeOps Cloud Marketplace and start earning revenue share!
               </p>
