@@ -6,64 +6,37 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Trash2, Plus, ExternalLink, Twitter, Github } from "lucide-react"
-import { WalletConnect } from "@/components/wallet-connect"
 import Image from "next/image"
 
 interface Task {
   id: number
   text: string
   completed: boolean
-  owner?: string
 }
 
 export default function Page() {
   const [tasks, setTasks] = useState<Task[]>([])
   const [newTask, setNewTask] = useState("")
-  const [connectedAddress, setConnectedAddress] = useState<string>("")
 
   // Load tasks from localStorage on component mount
   useEffect(() => {
-    const savedTasks = localStorage.getItem("web3-tasks")
-    const savedAddress = localStorage.getItem("connected-wallet")
-
+    const savedTasks = localStorage.getItem("tasks")
     if (savedTasks) {
       setTasks(JSON.parse(savedTasks))
-    }
-    if (savedAddress) {
-      setConnectedAddress(savedAddress)
     }
   }, [])
 
   // Save tasks to localStorage whenever tasks change
   useEffect(() => {
-    localStorage.setItem("web3-tasks", JSON.stringify(tasks))
+    localStorage.setItem("tasks", JSON.stringify(tasks))
   }, [tasks])
 
-  // Save connected address to localStorage
-  useEffect(() => {
-    if (connectedAddress) {
-      localStorage.setItem("connected-wallet", connectedAddress)
-    } else {
-      localStorage.removeItem("connected-wallet")
-    }
-  }, [connectedAddress])
-
-  const handleConnect = (address: string) => {
-    setConnectedAddress(address)
-  }
-
-  const handleDisconnect = () => {
-    setConnectedAddress("")
-    setTasks([])
-  }
-
   const addTask = () => {
-    if (newTask.trim() && connectedAddress) {
+    if (newTask.trim()) {
       const task: Task = {
         id: Date.now(),
         text: newTask.trim(),
         completed: false,
-        owner: connectedAddress,
       }
       setTasks([...tasks, task])
       setNewTask("")
@@ -77,8 +50,6 @@ export default function Page() {
   const deleteTask = (id: number) => {
     setTasks(tasks.filter((task) => task.id !== id))
   }
-
-  const userTasks = tasks.filter((task) => task.owner === connectedAddress)
 
   return (
     <div className="min-h-screen bg-black p-4">
@@ -111,7 +82,7 @@ export default function Page() {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
               {/* Documentation Link Box - Blue */}
               <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200 hover:border-blue-300 transition-colors">
                 <CardContent className="p-4">
@@ -124,6 +95,25 @@ export default function Page() {
                     <ExternalLink className="w-6 h-6 flex-shrink-0" />
                     <div className="flex flex-col">
                       <span className="text-xs font-medium">Create Templates Guide</span>
+                    </div>
+                  </a>
+                </CardContent>
+              </Card>
+
+              {/* YouTube Video Box - Red */}
+              <Card className="bg-gradient-to-br from-red-50 to-red-100 border-red-200 hover:border-red-300 transition-colors">
+                <CardContent className="p-4">
+                  <a 
+                    href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-red-700 hover:text-red-900 transition-colors"
+                  >
+                    <svg className="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                    <div className="flex flex-col">
+                      <span className="text-xs font-medium">Watch Tutorial Video</span>
                     </div>
                   </a>
                 </CardContent>
@@ -174,103 +164,63 @@ export default function Page() {
 
         <Card className="bg-white shadow-xl">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-bold text-purple-600 mb-4">A Web3 Task Manager</CardTitle>
-            <div className="flex justify-center">
-              <WalletConnect
-                onConnect={handleConnect}
-                onDisconnect={handleDisconnect}
-                connectedAddress={connectedAddress}
-              />
-            </div>
+            <CardTitle className="text-2xl font-bold text-purple-600 mb-4">Task Manager</CardTitle>
           </CardHeader>
 
           <CardContent className="space-y-6">
-            {connectedAddress ? (
-              <>
-                <div className="bg-purple-50 p-4 rounded-lg">
-                  <p className="text-sm text-purple-700">
-                    Connected as: <span className="font-mono">{connectedAddress}</span>
-                  </p>
-                  <p className="text-xs text-purple-600 mt-1">
-                    Your tasks are stored locally and associated with your wallet
-                  </p>
+            {/* Add Task Section */}
+            <div className="flex gap-2">
+              <Input
+                type="text"
+                placeholder="Add a new task..."
+                value={newTask}
+                onChange={(e) => setNewTask(e.target.value)}
+                onKeyPress={(e) => e.key === "Enter" && addTask()}
+                className="flex-1"
+              />
+              <Button onClick={addTask} className="bg-purple-600 hover:bg-purple-700" disabled={!newTask.trim()}>
+                <Plus className="w-4 h-4" />
+              </Button>
+            </div>
+            
+            {/* Tasks List */}
+            <div className="space-y-2">
+              {tasks.length === 0 ? (
+                <div className="text-center py-8 text-gray-500">
+                  <p>No tasks yet. Add your first task above!</p>
                 </div>
-
-                {/* Add Task Section */}
-                <div className="flex gap-2">
-                  <Input
-                    type="text"
-                    placeholder="Add a new task..."
-                    value={newTask}
-                    onChange={(e) => setNewTask(e.target.value)}
-                    onKeyPress={(e) => e.key === "Enter" && addTask()}
-                    className="flex-1"
-                  />
-                  <Button onClick={addTask} className="bg-purple-600 hover:bg-purple-700" disabled={!newTask.trim()}>
-                    <Plus className="w-4 h-4" />
-                  </Button>
-                </div>
-                
-                {/* Tasks List */}
-                <div className="space-y-2">
-                  {userTasks.length === 0 ? (
-                    <div className="text-center py-8 text-gray-500">
-                      <p>No tasks yet. Add your first task above!</p>
-                    </div>
-                  ) : (
-                    userTasks.map((task) => (
-                      <div
-                        key={task.id}
-                        className={`flex items-center gap-3 p-3 rounded-lg border ${
-                          task.completed ? "bg-gray-50 border-gray-200" : "bg-white border-gray-300"
-                        }`}
-                      >
-                        <Checkbox checked={task.completed} onCheckedChange={() => toggleTask(task.id)} />
-                        <span className={`flex-1 ${task.completed ? "line-through text-gray-500" : "text-gray-900"}`}>
-                          {task.text}
-                        </span>
-                        <Button
-                          variant="destructive"
-                          size="sm"
-                          onClick={() => deleteTask(task.id)}
-                          className="bg-yellow-400 hover:bg-yellow-500 text-black"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </Button>
-                      </div>
-                    ))
-                  )}
-                </div>
-
-                {/* Stats */}
-                {userTasks.length > 0 && (
-                  <div className="bg-gray-50 p-4 rounded-lg">
-                    <div className="flex justify-between text-sm text-gray-600">
-                      <span>Total tasks: {userTasks.length}</span>
-                      <span>Completed: {userTasks.filter((t) => t.completed).length}</span>
-                      <span>Remaining: {userTasks.filter((t) => !t.completed).length}</span>
-                    </div>
+              ) : (
+                tasks.map((task) => (
+                  <div
+                    key={task.id}
+                    className={`flex items-center gap-3 p-3 rounded-lg border ${
+                      task.completed ? "bg-gray-50 border-gray-200" : "bg-white border-gray-300"
+                    }`}
+                  >
+                    <Checkbox checked={task.completed} onCheckedChange={() => toggleTask(task.id)} />
+                    <span className={`flex-1 ${task.completed ? "line-through text-gray-500" : "text-gray-900"}`}>
+                      {task.text}
+                    </span>
+                    <Button
+                      variant="destructive"
+                      size="sm"
+                      onClick={() => deleteTask(task.id)}
+                      className="bg-yellow-400 hover:bg-yellow-500 text-black"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </Button>
                   </div>
-                )}
-              </>
-            ) : (
-              <div className="text-center py-12">
-                <div className="mb-6">
-                  <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                      />
-                    </svg>
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Connect Your Wallet</h3>
-                  <p className="text-gray-600 max-w-md mx-auto">
-                    Connect your Web3 wallet to start managing your tasks. Your tasks will be associated with your
-                    wallet address and stored securely.
-                  </p>
+                ))
+              )}
+            </div>
+
+            {/* Stats */}
+            {tasks.length > 0 && (
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <div className="flex justify-between text-sm text-gray-600">
+                  <span>Total tasks: {tasks.length}</span>
+                  <span>Completed: {tasks.filter((t) => t.completed).length}</span>
+                  <span>Remaining: {tasks.filter((t) => !t.completed).length}</span>
                 </div>
               </div>
             )}
