@@ -82,7 +82,37 @@ export default function Page() {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+            {/* Featured Video Section */}
+            <div className="mb-6">
+              <div className="bg-gradient-to-r from-red-500 to-red-600 rounded-lg p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className="bg-white bg-opacity-20 rounded-full p-3">
+                      <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold mb-1">🎬 Get Started with Templates</h3>
+                      <p className="text-red-100 text-sm">Watch our step-by-step tutorial to learn how to create and deploy templates</p>
+                    </div>
+                  </div>
+                  <a 
+                    href="https://www.youtube.com/watch?v=q6S_P3PDAzg" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="bg-white text-red-600 px-6 py-3 rounded-lg font-semibold hover:bg-red-50 transition-colors flex items-center gap-2"
+                  >
+                    <span>Watch Now</span>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               {/* Documentation Link Box - Blue */}
               <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200 hover:border-blue-300 transition-colors">
                 <CardContent className="p-4">
@@ -95,25 +125,6 @@ export default function Page() {
                     <ExternalLink className="w-6 h-6 flex-shrink-0" />
                     <div className="flex flex-col">
                       <span className="text-xs font-medium">Create Templates Guide</span>
-                    </div>
-                  </a>
-                </CardContent>
-              </Card>
-
-              {/* YouTube Video Box - Red */}
-              <Card className="bg-gradient-to-br from-red-50 to-red-100 border-red-200 hover:border-red-300 transition-colors">
-                <CardContent className="p-4">
-                  <a 
-                    href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-red-700 hover:text-red-900 transition-colors"
-                  >
-                    <svg className="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                    </svg>
-                    <div className="flex flex-col">
-                      <span className="text-xs font-medium">Watch Tutorial Video</span>
                     </div>
                   </a>
                 </CardContent>
