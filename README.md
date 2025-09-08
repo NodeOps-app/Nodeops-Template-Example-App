@@ -1,29 +1,28 @@
-# NodeOps Web3 Task Manager
+# NodeOps Task Manager Template
 
-A Web3-enabled task management application designed for the NodeOps hackathon demo. This project showcases how to deploy a template on the NodeOps Cloud Marketplace and start earning revenue share.
+A simple task management application template designed for the NodeOps Cloud Marketplace. This project showcases how to deploy a template on the NodeOps Cloud Marketplace and start earning revenue share.
 
 ## 🚀 Features
 
-- **Web3 Wallet Integration**: Connect with Ethereum wallets (MetaMask, etc.)
-- **Task Management**: Create, complete, and delete tasks associated with your wallet
-- **Local Storage**: Tasks are stored locally and linked to your wallet address
-- **Environment Variables**: Demonstrates runtime environment variable handling
+- **Task Management**: Create, complete, and delete tasks
+- **Local Storage**: Tasks are stored locally in your browser
+- **Task Statistics**: View total, completed, and remaining task counts
 - **Docker Support**: Containerized for easy deployment
 - **Responsive Design**: Modern UI with Tailwind CSS
+- **NodeOps Integration**: Ready for NodeOps Cloud Marketplace deployment
 
 ## 🛠️ Tech Stack
 
 - **Frontend**: Next.js 15, React 19, TypeScript
 - **Styling**: Tailwind CSS, Radix UI components
-- **Web3**: Ethereum wallet integration
 - **Icons**: Lucide React
 - **Containerization**: Docker
 
 ## 📦 Installation
 
 ### Prerequisites
-- Node.js 20+
-- pnpm (recommended) or npm
+- Node.js 24+
+- npm
 - Docker (optional)
 
 ### Local Development
@@ -83,7 +82,7 @@ This demo showcases:
 
 ## 📚 Resources
 
-- [NodeOps Documentation](https://docs.nodeops.network/Guides/Marketplace/Configure-Compute/Create-Templates)
+- [NodeOps Docker Guide](https://docs.nodeops.network/Guides/Marketplace/Configure-Compute/public-docker)
 - [NodeOps Twitter](https://x.com/BuildOnNodeOps)
 - [Source Code Repository](https://github.com/NodeOps-app/Nodeops-Template-Example-App)
 
@@ -96,8 +95,7 @@ Nodeops-Template-Example-App/
 │   ├── layout.tsx         # Root layout
 │   └── page.tsx           # Main page
 ├── components/            # React components
-│   ├── ui/               # UI components (Radix UI)
-│   └── wallet-connect.tsx # Wallet connection component
+│   └── ui/               # UI components (Radix UI)
 ├── lib/                   # Utility functions
 ├── public/                # Static assets
 ├── Dockerfile            # Docker configuration
@@ -112,7 +110,7 @@ Nodeops-Template-Example-App/
    - Test locally with Docker
 
 2. **Submit to NodeOps Marketplace**:
-   - Follow the [Create Templates Guide](https://docs.nodeops.network/Guides/Marketplace/Configure-Compute/Create-Templates)
+   - Follow the [Docker Guide](https://docs.nodeops.network/Guides/Marketplace/Configure-Compute/public-docker)
    - Upload your Docker image
 
 3. **Start earning**:

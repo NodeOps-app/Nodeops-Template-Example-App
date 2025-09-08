@@ -6,8 +6,8 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "NodeOps Web3 Task Manager",
-  description: "A Web3-enabled task manager with wallet integration",
+  title: "NodeOps Task Manager Template",
+  description: "A simple task manager template for NodeOps Cloud Marketplace",
 }
 
 export default function RootLayout({
