@@ -71,7 +71,7 @@ export default function Page() {
         </a>
       </div>
 
-      <div className="max-w-2xl mx-auto pt-20">
+      <div className="max-w-4xl mx-auto pt-20">
         {/* NodeOps Demo Info Section */}
         <Card className="bg-gradient-to-r from-purple-50 to-blue-50 border-purple-200 mb-6">
           <CardContent className="pt-6">
@@ -87,7 +87,7 @@ export default function Page() {
               <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200 hover:border-blue-300 transition-colors">
                 <CardContent className="p-4">
                   <a 
-                    href="https://docs.nodeops.network/Guides/Marketplace/Configure-Compute/Create-Templates" 
+                    href="https://docs.nodeops.network/Guides/Marketplace/Configure-Compute/public-docker" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 text-blue-700 hover:text-blue-900 transition-colors"
@@ -104,7 +104,7 @@ export default function Page() {
               <Card className="bg-gradient-to-br from-red-50 to-red-100 border-red-200 hover:border-red-300 transition-colors">
                 <CardContent className="p-4">
                   <a 
-                    href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
+                    href="https://www.youtube.com/watch?v=q6S_P3PDAzg&t=1s" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 text-red-700 hover:text-red-900 transition-colors"
