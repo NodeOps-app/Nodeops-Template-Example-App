@@ -21,6 +21,7 @@ A simple task management application template designed for the NodeOps Cloud Mar
 ## 📦 Installation
 
 ### Prerequisites
+
 - Node.js 24+
 - npm
 - Docker (optional)
@@ -28,38 +29,50 @@ A simple task management application template designed for the NodeOps Cloud Mar
 ### Local Development
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/NodeOps-app/Nodeops-Template-Example-App.git
    cd Nodeops-Template-Example-App
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
-3. **Run the development server**
+3. **Set up environment variables**
+
+   ```bash
+   # Create .env.local file
+   echo "NEXT_PUBLIC_TEST=Hello from local development!" > .env.local
+   ```
+
+4. **Run the development server**
+
    ```bash
    npm start
    # or
    npm run dev
    ```
 
-4. **Open your browser**
+5. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
 ### Docker Deployment
 
 1. **Build the Docker image**
+
    ```bash
    # With default environment variable
    docker build -t nodeops-task-manager .
-   
+
    # With custom environment variable
    docker build -t nodeops-task-manager .
    ```
 
 2. **Run the container**
+
    ```bash
    docker run -p 8000:3000 nodeops-task-manager
    ```
@@ -68,8 +81,6 @@ A simple task management application template designed for the NodeOps Cloud Mar
    Navigate to [http://localhost:8000](http://localhost:8000)
 
 ## 🔧 Environment Variables
-
-
 
 ## 🎯 NodeOps Integration
 
@@ -105,12 +116,14 @@ Nodeops-Template-Example-App/
 ## 🚀 Deployment to NodeOps
 
 1. **Prepare your template**:
+
    - Ensure Dockerfile is optimized
    - Set appropriate environment variables
    - Test locally with Docker
 
 2. **Submit to NodeOps Marketplace**:
-   - Follow the [Docker Guide](https://docs.nodeops.network/Guides/Marketplace/Configure-Compute/public-docker)
+
+   - Follow the [Create Templates Guide](https://docs.nodeops.network/Guides/Marketplace/Configure-Compute/Create-Templates)
    - Upload your Docker image
 
 3. **Start earning**:
@@ -125,3 +138,7 @@ This is a demo project. Feel free to fork and modify for your own NodeOps templa
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+**Built for NodeOps Hackathon** 🚀
